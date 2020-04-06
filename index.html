@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,user-scalable=no" />
+
+    <title>国内100个必去打卡点，你打卡几个？</title>
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header_logo">
+            <img src="./img/name.png" alt="" class="leftImg">
+            <img src="./img/musie.png" alt="" class="rightImg">
+        </div>
+        <div class="logo">
+            <img src="./img/logo.png" alt="">
+        </div>
+        <div class="slide">
+            <div class="slide_info">向上滑动开始旅行</div>
+            <img src="./img/line.png" alt="" class="lineImg">
+            <img src="./img/round.png" alt="" class="roundImg">
+            <img src="./img/slid.png" alt="" class="slidImg">
+        </div>
+        <div class="footer">
+            <img src="./img/footer.png" alt="">
+        </div>
+        <!-- 开启打卡 -->
+        <div class="slide_content ">
+            <img src="./img/activityDesc.png" class="activityDesc">
+            <!-- <img src="./img/gameDesc.png" class="gameDesc"> -->
+            <!-- 开启打卡按钮 -->
+            <img src="./img/toclock.png" class="toclock">
+        </div>
+        <!-- 表单页 -->
+        <div class="slide_content2">
+            <div class="form_desc">
+                <span>请输入你的名字、电话</span>
+                <span>赢取百万奖品将会联系你</span>
+            </div>
+            <div class="row_input">
+                <p>NAME</p>
+                <input type="text" placeholder="请输入真实姓名" class="name" />
+            </div>
+            <div class="row_input">
+                <p>PHONE</p>
+                <input type="text" placeholder="请输入手机号码" class="phone" />
+            </div>
+            <!-- 去点击景点页面 -->
+            <img src="./img/sumbit.png" alt="" class="toGame">
+        </div>
+
+
+    </div>
+    <audio preload="autoplay" id="car_audio" src="bgm.mp3" loop></audio>
+
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="./js/tap.js"></script>
+    <script>
+        var flag = false
+        var car_audio = document.getElementById('car_audio')
+        var toclock = $('.toclock')
+        var slide_content = $('.slide_content')
+        var slide_content2 = $('.slide_content2')
+        document.addEventListener("WeixinJSBridgeReady", function () {
+            car_audio.play();
+        }, false);
+
+        // 手机拖动
+        drag($('.roundImg'), $('.slide'))
+
+
+        function drag(obj1, obj3) {
+            var doumentY, nowY, y, addTop,objTop
+            $(document).bind('touchstart', function (event) {
+                doumentY = event.originalEvent.changedTouches[0].clientY
+                // console.log(doumentY);
+                
+            })
+            $(document).bind('touchmove', function (event) {
+                objTop = parseInt(obj1.css('top'))
+                nowY = event.originalEvent.changedTouches[0].clientY
+                y = nowY-doumentY
+                // console.log(y);
+                if(y<=0){
+                    addTop = objTop+y                    
+                    obj1.css({
+                    "top": addTop + "px"
+                });
+                } else {
+                    y = 0
+                }
+                if(objTop<=5){
+                    obj1.css({
+                        'top': 0
+                    })
+                    $(this).unbind('touchmove')
+                    slide_content.css('bottom', 0)
+                } 
+
+                doumentY = nowY
+            })
+            $(document).bind('touchend', function(event){
+                if(objTop>=5){
+                    obj1.animate({top: obj3[0].clientHeight-obj1[0].clientHeight})
+
+                }
+            })
+        }
+
+        function temporaryRepair() {
+            var currentPosition, timer;
+            var speed = 1; //页面滚动距离
+            timer = setInterval(function () {
+                currentPosition = document.documentElement.scrollTop || document.body.scrollTop;
+                currentPosition -= speed;
+                window.scrollTo(0, currentPosition); //页面向上滚动
+                currentPosition += speed; //speed变量
+                window.scrollTo(0, currentPosition); //页面向下滚动
+                clearInterval(timer);
+            }, 1);
+        }
+        $('input').addTapEvent(function () {
+            $(this).focus()
+        })
+        $('input').on('blur', function () {
+            temporaryRepair()
+        })
+
+        // 去表单页
+        toclock.addTapEvent(function () {
+            slide_content.css('bottom', -(parseInt($('.slide_content').css('bottom'))))
+            slide_content2.css('left', '0')
+
+        })
+        $('.toGame').addTapEvent(function () {
+            var name = $(".name").val();
+            var phone = $(".phone").val();
+
+            if (name == "") {
+                alert("请输入您的名字！")
+            } else if (phone == "" && name != "") {
+                alert("请输入您的电话号码！")
+            } else if (name != "" && phone != "") {
+                if (!(/^1[34578]\d{9}$/.test(phone))) {
+                    alert("请输入有效的电话号码！");
+                } else {
+
+                    // alert("yes")
+                    window.location.href = 'game.html'
+
+                }
+            }
+        })
+        $('.rightImg').addTapEvent(function () {
+            flag = !flag
+            if (flag) {
+                $(this).css('animationPlayState', 'paused')
+                car_audio.pause()
+            } else {
+                $(this).css('animationPlayState', 'running')
+                car_audio.play()
+            }
+        })
+    </script>
+</body>
+
+</html>

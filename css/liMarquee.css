@@ -1,0 +1,87 @@
+/*Plugin CSS*/
+html{
+	font-size: 26.666666vw;
+}
+.str_wrap {
+	overflow: hidden;
+	/* //zoom:1; */
+	width: 100%;
+	font-size: 12px;
+	line-height: 16px;
+	position: relative;
+	-moz-user-select: none;
+	-khtml-user-select: none;
+	user-select: none;
+	background: #fff;
+	white-space: nowrap;
+}
+
+/* .str_wrap.str_active {
+	background: #f1f1f1;
+} */
+
+.str_move {
+	white-space: nowrap;
+	position: absolute;
+	top: 0;
+	left: 0;
+	cursor: move;
+	/* height: 4.7rem; */
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	backface-visibility: hidden;
+
+	-webkit-perspective: 1000;
+	-moz-perspective: 1000;
+	-ms-perspective: 1000;
+	perspective: 1000;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	-webkit-transform: translate3d(0, 0, 0);
+
+	-moz-transform: translate3d(0, 0, 0);
+
+	-ms-transform: translate3d(0, 0, 0);
+
+	transform: translate3d(0, 0, 0);
+}
+
+.str_move_clone {
+	display: inline-block;
+	/* //display:inline; */
+	/* //zoom:1; */
+	vertical-align: top;
+	position: absolute;
+	left: 100%;
+	top: 0;
+}
+
+.str_vertical .str_move_clone {
+	left: 0;
+	top: 100%;
+}
+
+.str_down .str_move_clone {
+	left: 0;
+	bottom: 100%;
+}
+
+.str_vertical .str_move,
+.str_down .str_move {
+	white-space: normal;
+	width: 100%;
+}
+
+.str_static .str_move,
+.no_drag .str_move,
+.noStop .str_move {
+	cursor: inherit;
+}
+
+.str_wrap img {
+	max-width: none !important;
+}

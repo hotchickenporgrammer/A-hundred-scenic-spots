@@ -1,0 +1,152 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 13.333333vw;
+}
+.container{
+    min-height: 100vh;
+    width: 100%;
+    padding: 0.4rem 0 0.6rem 0;
+    background: #0f5b94;
+    box-sizing: border-box;
+}
+.main{
+    position: relative;
+    margin: 0 auto;
+    width: 6.99rem;
+    height: 12.34rem;
+}
+.mainImg,
+.bg_group {
+    width: 100%;
+    position: relative;
+}
+.canvasImg{
+    z-index: 9999;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+.weixin{
+    position: absolute;
+    top: 1.13rem;
+    left: 0.5rem;
+    font-size: 0.26rem;
+    color:rgba(51, 51, 51, 1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    height: 1.76rem;
+    width: 1.35rem;
+    z-index: 99;
+    /* text-align: center; */
+}
+.weixin img{
+    width: 1.35rem;
+    height: 1.35rem;
+}
+.qrcode{
+    position: absolute;
+    bottom: 0.3rem;
+    left: 1.6rem;
+    height: 1.16rem;
+    width: 1.16rem;
+}
+.qrcode img{
+    width: 100%;
+    height: 100%;
+}
+.info{
+    font-size:0.24rem;
+    color:rgba(255, 255, 255, 1);
+    text-align: center;
+    margin-top: 0.26rem;
+}
+.btn{
+    height: 0.81rem;
+    width: 3.22rem;
+    margin: 0.32rem auto;
+}
+.btn img{
+    height: 100%;    
+    width: 100%;
+}
+.noShow{
+    display: none;
+}
+#charts{
+    width: 6.5rem;
+    height: 5.2rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 2.8rem;
+    z-index: 998;
+}
+.been{
+    position: absolute;
+    left: 0.45rem;
+    bottom: 3.58rem;
+    font-size:0.5rem;
+    font-weight:bold;
+    line-height:0.57rem;
+    color: #10ac6c;
+    z-index: 99;
+    
+}
+.isDaShen{
+    color: #0077D1 !important;
+}
+.loading{
+    height: 100vh;
+    width: 100vw;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 1);
+    overflow: hidden;
+    z-index: 999;
+}
+.loadInfo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    font-size: 0.18rem;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+.loadInfo img{
+    width: 0.7rem;
+    height: 0.7rem;
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    animation-name: rotate;
+    animation-duration: 3000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.loadInfo p{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    text-align: center;
+    width: 100%;
+}
+
+@keyframes rotate {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+    }
+}

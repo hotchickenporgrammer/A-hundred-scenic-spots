@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <meta charset="UTF-8">
+    <title>国内100个必去打卡点，你打卡几个？</title>
+    <link rel="stylesheet" href="./css/posters.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="main" id="main">
+            <div class="weixin">
+                <img src="./img/weixin.png" alt="">
+                <p>微信名称</p>
+            </div>
+            <div id="charts">
+
+            </div>
+            <div class="been">
+                <p>我已去了<span class="beenNum">79</span>个</p>
+                <p>跨越<span class="beenCite">32</span>省市</p>
+            </div>
+            <div class="bg_group">
+                <!-- 实习生 -->
+                <img src="./img/shixi.png" alt="" class="mainImg noShow shixi">
+                <!-- 旅行达人 -->
+                <img src="./img/daren.png" alt="" class="mainImg noShow daren">
+                <!-- 生活旅行家 -->
+                <img src="./img/lvxinjia.png" alt="" class="mainImg noShow lvxinjia">
+                <!-- 国家地理大神 -->
+                <img src="./img/dashen.png" alt="" class="mainImg dashen noShow">
+            </div>
+            <div class="qrcode">
+                <img src="./img/qrcode.png" alt="">
+            </div>
+            <img src="#" alt="" class="canvasImg noShow">
+        </div>
+        <p class="info">长按保存图片,转发给朋友助力换取旅行基金</p>
+        <div class="btn">
+            <img src="./img/checkLike.png" alt="">
+        </div>
+    </div>
+    <div class="loading">
+        <div class="loadInfo">
+            <img src="./img/loading.png" alt="">
+            <p>生成中~</p>
+        </div>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+    <script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>
+    <!-- <script src="https://cdn.bootcss.com/html2canvas/0.5.0-beta4/html2canvas.min.js"></script> -->
+    <script src="./js/html2canvas.js"></script>
+    <script src="js/tap.js"></script>
+    <script>
+        $('html,body').animate({ scrollTop:0});
+
+        //生成地图
+        var mycharts = echarts.init(document.getElementById('charts'))
+        option = {
+            dataRange: {
+                show: false,
+                x: 'left',
+                y: 'bottom',
+                splitList: [{
+                        start: 5,
+                        end: 5,
+                        color: 'orange'
+                    }, //当值为5时，区域背景
+                    {
+                        start: 10,
+                        end: 10,
+                        color: '#ff6300'
+                    }, //当值为10时，区域背景
+                    {
+                        start: 15,
+                        end: 15,
+                        color: '#ccc'
+                    }, //当值为15时，区域背景
+                ],
+            },
+            series: [{
+                name: '去过的地方',
+                type: 'map',
+                mapType: 'china',
+                //hoverable: false,
+                roam: false,
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,
+                            textStyle:{
+                            fontSize: 5,
+                            }
+                        }
+                    },
+                    emphasis: {
+                        label: {
+                            show: false
+                        }
+                    }
+                },
+                　label: {
+                        normal: {
+                        textStyle: {
+                            fontSize: 1,
+                            fontWeight: 'bold',
+                            color: 'red'
+                        }
+                    }
+                }
+            }],
+            animation: false
+
+        };
+        var ini_data = []; //初始化省份数组
+        var provArr = ['河北', '河南', '云南', '辽宁', '黑龙江', '内蒙古', '湖南', '安徽', '山东', '北京', '香港', '新疆']; //获取的省份，有可能是从后台获取
+        //正则省份，将省与市的字眼去掉，框架不识别
+        for (var i = 0; i < provArr.length; i++) {
+            var str = provArr[i];
+            var re = /省|市/g; //全局匹配 
+            var str2 = {
+                name: str.replace(re, ''),
+                value: 5
+            };
+            //拼接对象数组 
+            ini_data.push(str2);
+        }
+        option.series[0].data = ini_data; //将拼接好的数组赋给参数集合
+        mycharts.setOption(option); //跟新图表
+        function ini_province() {
+            var ini_len = option.series[0].data.length;
+            for (var i = 0; i < ini_len; i++) { //初始化颜色 
+                option.series[0].data[i].value = 5;
+                mycharts.setOption(option);
+            }
+        }
+
+        //生成图片
+        var main = document.getElementById('main')
+        var opts = {
+            scale: window.devicePixelRatio || 1, // 添加的scale 参数
+            logging: false, //日志开关，便于查看html2canvas的内部执行流程
+            useCORS: true // 【重要】开启跨域配置
+        };
+
+        function convert() {
+            html2canvas(main, opts).then(canvas => {
+                // document.body.appendChild(canvas)
+                var imgUrl = canvas.toDataURL("image/png", 1)
+                var canvasImg = $('.canvasImg')
+                canvasImg.attr("src", imgUrl)
+                canvasImg.removeClass('noShow')
+                // $('.bg_group').css('display', 'none')
+            });
+        }
+
+        //////////////////
+
+        function isDaShen() {
+            var dashen = $('.dashen')
+            var been = $('.been')
+
+            if (!dashen.hasClass('noShow')) {
+                been.addClass('isDaShen')
+            } else {
+                been.removeClass('isDaShen')
+            }
+        }
+
+        // 要放在请求后的回调里 loading最后结束 setTimeout去掉
+        setTimeout(() => {
+            convert() //生成图片
+            $('.loading').addClass('noShow')
+        }, 2000);
+        // 判断是否是大神改变字体颜色和背景图 要放在请求后的回调里
+        howBenn()
+
+        function howBenn() {
+            var num = parseInt($('.beenNum').text())
+            if (num <= 30) {
+                $('.shixi').removeClass('noShow')
+            } else if (num >= 31 && num <= 50) {
+                $('.daren').removeClass('noShow')
+            } else if (num >= 51 && num <= 80) {
+                $('.lvxinjia').removeClass('noShow')
+            } else if (num >= 81 && num <= 100) {
+                $('.dashen').removeClass('noShow')
+            }
+            isDaShen()
+        }
+
+        $('.loading').on('touchstart', e => {
+        e.preventDefault()
+        }, false)
+
+        //查看我的点赞
+        $('.btn').addTapEvent(function () {
+            window.location.href="detail.html"
+        })
+    </script>
+</body>
+
+</html>

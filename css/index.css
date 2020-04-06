@@ -1,0 +1,221 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 13.333333vw;
+
+}
+body{
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+}
+.container{
+    position: relative;
+    overflow: hidden;
+    background-image: url('../img/bg.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    width: 100vw;
+    height: 100vh;
+}
+.header_logo{
+    box-sizing: border-box;
+    padding: 0 0.3rem;
+    margin-top: 0.3rem;
+    display: flex;
+    justify-content: space-between;
+}
+.leftImg{
+    width: 4.5rem;
+    height: 0.4rem;
+}
+.rightImg{
+    width: 0.59rem;
+    height: 0.59rem;
+    animation-name: rotate;
+    animation-duration: 5000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+
+}
+.logo{
+    height: 5.5rem;
+    width: 6.52rem;
+    margin-left: 0.74rem;
+    margin-top: 3.333333vh;
+}
+.logo img{
+    height: 100%;
+    width: 100%;
+}
+.slide{
+    margin-top: 6.666666vh;
+}
+.footer{
+    margin-top: 5vh;
+    margin-left:auto;
+    margin-right:auto;
+    width: 4.13rem;
+    height: 0.38rem;
+}
+.footer img{
+    height: 100%;
+    width: 100%;
+}
+.slide{
+    position: relative;
+    height: 2.22rem;
+}
+.slide_info{
+    width:0.17rem;
+    height:1.49rem;
+    font-size:0.18rem;
+    color:rgba(255, 255, 255, 1);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-0.5rem);
+}
+.lineImg{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0.24rem;
+    height: 1.86rem;
+}
+.roundImg{
+      padding: 0 1rem ;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0.24rem;
+      height: 0.24rem;
+      /* transition: all 500ms; */
+}
+.slidImg{
+    display: none;
+        width: 0.6rem;
+        height: 0.53rem;
+        position: absolute;
+        bottom: -0.27rem;
+        left: 52%;
+        animation-name: upDown;
+        animation-duration: 1000ms;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        
+}
+.slide_content{
+    position: absolute;
+    bottom: -80vh;
+    left: 0;
+    width: 100vw;
+    height: 80vh;
+    background-color: #fff;
+    transition: all 300ms;
+    line-height: 0;
+	transform: translateZ(0);
+
+}
+.slide_content2 {
+    position: absolute;
+    bottom: 0;
+    left: 100vw;
+    width: 100vw;
+    height: 80vh;
+    background-color: #fff;
+    transition: all 300ms;
+    padding-left:0.83rem;
+    box-sizing: border-box;
+	transform: translateZ(0);
+
+}
+.activityDesc{
+    width: 5rem;
+    height: 3rem;
+    margin-top:0.7rem;
+    margin-left: 0.7rem;
+}
+.gameDesc{
+    width: 5.9rem;
+    height: 3rem;
+    margin-top:0.7rem;
+    margin-left: 0.7rem;
+}
+.toclock{
+    width: 3.22rem;
+    height: 0.81rem;
+    margin-top: 1rem;
+    margin-left: 0.84rem;
+}
+.form_desc{
+    height: 1.04rem;
+    font-size: 0.43rem;
+    color:rgba(18, 92, 148, 1);
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-weight: bold;
+}
+.row_input{
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.47rem;
+
+}
+.row_input p{
+    font-size: 0.28rem;
+    /* font-weight: bold; */
+    color:rgba(18, 92, 148, 1);
+
+}
+.row_input input{
+    position: relative;
+    z-index: 999;
+    width: 4.06rem;
+    height: 0.74rem;
+    box-sizing: border-box;
+    /* padding: 0.22rem; */ 
+    margin-top: 0.1rem;
+    border-radius: 0;
+    background: #fff;
+    box-shadow: none;
+    font-size: 0.31rem;
+    color:rgba(153, 153, 153, 1);
+    padding-left: 0.2rem;
+    outline: rgba(18, 92, 148, 1);
+    border: 1px solid #666;
+    -webkit-appearance: none;
+}
+.toGame {
+    width: 3.22rem;
+    margin-top: 0.7rem;
+    height: 0.8rem;
+}
+@keyframes upDown {
+    0% {
+        bottom: -0.27rem;
+    }
+
+    100% {
+        bottom: 100%;
+    }
+}
+@keyframes rotate {
+    0% {
+        transform:rotate(0deg);
+    }
+
+    100% {
+         transform:rotate(360deg);
+    }
+}

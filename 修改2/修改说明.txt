@@ -1,0 +1,2 @@
+css替换
+game.html 修改掉原来的danmu函数

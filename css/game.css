@@ -1,0 +1,136 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+html{
+    font-size: 26.666666vw;
+}
+.titleBg {
+    width: 100%;
+    position: relative;
+    height: 0.5rem;
+}
+.titleBg img{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.titleText{
+    color: #fff;
+    font-size: 0.2rem;
+    position: absolute;
+    top: 50%; 
+    transform: translateY(-50%);
+    left: 0.37rem;
+    font-style: oblique;
+}
+.clickNum{
+    font-size: 0.3rem;
+    padding: 0 0.1rem;
+    font-weight: bold;
+}
+.dowebok {
+    width: 100vw;
+    padding-bottom: 0.1rem;
+    box-sizing: border-box;
+    /* margin: 150px auto; */
+    font-size: 0.14rem;
+    height: 4.5rem !important;
+}
+
+.items {
+    position: absolute;
+    /* display: inline-block; */
+    z-index: 999;
+    cursor: pointer;
+    height: 0.5rem;
+    width: 1.5rem;
+    line-height: 0.5rem;
+    text-align: center;
+    font-size: 0.2rem;
+    color: #000;
+    font-weight:normal;
+    display: none;
+    /* background-color: thistle; */
+}
+
+.items img {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 1rem;
+    height: 1rem;
+}
+
+
+.itemImg {
+    display: none;
+    transition: all 300ms;
+}
+
+.showImg {
+    display: block;
+    animation-name: bounceIn;
+    animation-duration: 450ms;
+    animation-timing-function: linear;
+    box-shadow: 0 2px 10px 3px rgba(10, 16, 20, .24);
+    /* animation-fill-mode: forwards; */
+    border-radius: 50%;
+	transform: translateZ(0);
+
+    /* transform-origin: ; */
+}
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) translate(-50%, -50%);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.1) translate(-50%, -50%);
+    }
+
+    80% {
+        opacity: 1;
+        transform: scale(0.89) translate(-50%, -50%);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1) translate(-50%, -50%);
+    }
+}
+
+.box {
+    position: relative;
+    width: 10290px;
+    height: 5rem;
+    box-sizing: border-box;
+    padding: 0.8rem 0;
+    background: transparent;
+}
+.btn_content{
+    font-size:0.15rem;
+    color:rgba(102, 102, 102, 1);
+    padding-bottom: 0.5rem;
+}
+.btn_content p{
+    text-align: center;
+    margin-bottom: 0.13rem;
+}
+.btn{
+    border-radius: 0.3rem;
+    margin: 0 auto;
+    height: 0.4rem;
+    width: 1.6rem;
+    background-color: #ffa921;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    line-height: 0.4rem;
+
+}

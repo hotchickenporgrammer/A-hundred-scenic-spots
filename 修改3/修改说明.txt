@@ -1,0 +1,3 @@
+帮我在detail.css的main_content这个类加一句  box-shadow: 0 2px 9px 1px #ccc;
+index 更改 drag函数
+替index.css
